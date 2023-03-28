@@ -8,10 +8,8 @@ int levelInput;
 int questionsInput;
 
 string now = DateTime.Now.ToString("dd-MM-yyyy");
-string type = "test";
 string level;
 int score = 0;
-int timeSec = 0;
 
 List<List<string>> mainDataBase = new List<List<string>>();
 
@@ -48,7 +46,7 @@ do
         
     } while(levelInput < 10 || levelInput > 100);
 
-    /*Add test amount*/
+    /*Add number of questions*/
 
     do
     {
@@ -101,7 +99,7 @@ do
     Console.WriteLine($"\t---------------------------------------------------------");
     Console.WriteLine($"\t{recordData[0]}\t{recordData[1]}\t{recordData[2]}\t{recordData[3]}\t{recordData[4]}");
     
-    /*Add to the results to the 2D List*/
+    /*Add to the results to the 2D List => Scores Database*/
 
     mainDataBase.Add( recordData );
 
@@ -171,12 +169,12 @@ int displayAmountQuestions()
 
 List<string> playTheGame(string mainMenuInput, int questionsInput, List<string> recordData, int levelInput)
 {
-    // Date, Type, Level, Score, TimeSec
+    // Database => Date, Type, Level, Score, TimeSec
                                         
     recordData.Add(now); // Record Date
     recordData.Add(mainMenuInput);  // Record Type
     Stopwatch stopWatch = new Stopwatch();
-    stopWatch.Start();  // START TIMER
+    stopWatch.Start();  // Start timer
 
     for (int i = 0; i < questionsInput; i++)
     {
@@ -230,8 +228,8 @@ List<string> playTheGame(string mainMenuInput, int questionsInput, List<string> 
     recordData.Add(Convert.ToString(levelInput)); // Record Level
     recordData.Add(Convert.ToString(score)); // Record Score
 
-    stopWatch.Stop(); // STOP TIMER
-    string totalTime = Convert.ToInt32(stopWatch.Elapsed.TotalSeconds).ToString();  // TOTAL TIME
+    stopWatch.Stop(); // Stop timer
+    string totalTime = Convert.ToInt32(stopWatch.Elapsed.TotalSeconds).ToString();  // Total time
 
     recordData.Add(totalTime); // Record Time
     score = 0; // Reset Score to 0 for a new Game
@@ -328,8 +326,6 @@ void division(int[] nums)
 /*---------------- ADD SCORE DATA TO THE 2D LIST ----------------*/
 /*---------------- DISPLAY THE 2D LIST AS A TABLE ---------------*/
 
-/*Record final score in 2D list*/
-//==>    // LOOP THE 2D LIST
 
 void displayDatabase()
 {
@@ -346,7 +342,6 @@ void displayDatabase()
     Console.Clear();
 }
 
-
 /*--------------------- TEST IF RIGHT ANSWER -------------------*/
 
 void testAnswer(int inputAnswer, int calcAnswer)
@@ -362,9 +357,3 @@ void testAnswer(int inputAnswer, int calcAnswer)
     }
     Console.ReadKey();
 }
-
-/*--------------------- MOD LEVEL TO [1-3] ---------------------*/
-
-  
-
-/*-------------- CHANGE MENU CODE TO LONG TEXT -----------------*/
